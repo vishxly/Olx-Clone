@@ -1,6 +1,6 @@
-import  { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../api/axios";
+import axios from "axios"; // Import axios directly
 import { AuthContext } from "../context/AuthContext";
 
 const ListItem = () => {
@@ -17,7 +17,7 @@ const ListItem = () => {
     }
 
     try {
-      await axios.post("/api/items", { name, price: parseFloat(price) });
+      await axios.post("https://olxclone-backend.vercel.app/api/items", { name, price: parseFloat(price) });
       alert("Item listed successfully!");
       navigate("/my-items");
     } catch (error) {
@@ -27,7 +27,7 @@ const ListItem = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto ">
+    <div className="max-w-md mx-auto">
       <h1 className="mb-6 text-3xl font-bold">List an Item</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -60,17 +60,11 @@ const ListItem = () => {
         </div>
         <button
           type="submit"
-          className=" w-full
-        px-4 py-2 rounded-full 
-        flex items-center gap-2 justify-center 
-        text-slate-500
-        shadow-[-5px_-5px_10px_rgba(255,_255,_255,_0.8),_5px_5px_10px_rgba(0,_0,_0,_0.25)]
-        
-        transition-all
-
-        hover:shadow-[-1px_-1px_5px_rgba(255,_255,_255,_0.6),_1px_1px_5px_rgba(0,_0,_0,_0.3),inset_-2px_-2px_5px_rgba(255,_255,_255,_1),inset_2px_2px_4px_rgba(0,_0,_0,_0.3)]
-        hover:text-violet-500
-    "
+          className="w-full px-4 py-2 rounded-full flex items-center gap-2 justify-center text-slate-500
+            shadow-[-5px_-5px_10px_rgba(255,_255,_255,_0.8),_5px_5px_10px_rgba(0,_0,_0,_0.25)]
+            transition-all
+            hover:shadow-[-1px_-1px_5px_rgba(255,_255,_255,_0.6),_1px_1px_5px_rgba(0,_0,_0,_0.3),inset_-2px_-2px_5px_rgba(255,_255,_255,_1),inset_2px_2px_4px_rgba(0,_0,_0,_0.3)]
+            hover:text-violet-500"
         >
           List Item
         </button>

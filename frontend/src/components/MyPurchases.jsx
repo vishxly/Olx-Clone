@@ -9,7 +9,7 @@ const MyPurchases = () => {
   useEffect(() => {
     const fetchPurchases = async () => {
       try {
-        const res = await axios.get("/items/my-purchases");
+        const res = await axios.get("/api/items/my-purchases");
         setPurchases(res.data);
       } catch (error) {
         console.error("Error fetching purchases:", error);

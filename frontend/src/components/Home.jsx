@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("/items/unsold");
+        const res = await axios.get("/api/items/unsold");
         setItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -25,7 +25,7 @@ const Home = () => {
     }
 
     try {
-      await axios.put(`/items/purchase/${itemId}`);
+      await axios.put(`/api/items/purchase/${itemId}`);
       alert("Item purchased successfully!");
       
       setItems(items.filter((item) => item._id !== itemId));

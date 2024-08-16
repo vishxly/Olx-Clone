@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://olxclone-backend.vercel.app/api",
+        target: "https://olxclone-backend.vercel.app",
         changeOrigin: true,
       },
     },

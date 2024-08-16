@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get("/users/profile");
+      const res = await axios.get("/api/users/profile");
       setUser(res.data);
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("/users/login", { email, password });
+      const res = await axios.post("/api/users/login", { email, password });
       localStorage.setItem("token", res.data.token);
       axios.defaults.headers.common["x-auth-token"] = res.data.token;
       await fetchUser();
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password) => {
     try {
-      const res = await axios.post("/users/register", {
+      const res = await axios.post("/api/users/register", {
         username,
         email,
         password,

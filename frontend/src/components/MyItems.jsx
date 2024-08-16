@@ -9,7 +9,7 @@ const MyItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("/items/my-items");
+        const res = await axios.get("/api/items/my-items");
         setItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);

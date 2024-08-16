@@ -17,7 +17,7 @@ const ListItem = () => {
     }
 
     try {
-      await axios.post("/items", { name, price: parseFloat(price) });
+      await axios.post("/api/items", { name, price: parseFloat(price) });
       alert("Item listed successfully!");
       navigate("/my-items");
     } catch (error) {

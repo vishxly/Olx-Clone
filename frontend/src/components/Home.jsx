@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
   const [items, setItems] = useState([]);
+  const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -13,6 +14,7 @@ const Home = () => {
         setItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);
+        setMessage("Failed to fetch items. Please refresh the page.");
       }
     };
     fetchItems();
@@ -20,18 +22,17 @@ const Home = () => {
 
   const handlePurchase = async (itemId) => {
     if (!user) {
-      alert("You must be logged in to purchase an item.");
+      setMessage("You must be logged in to purchase an item.");
       return;
     }
 
     try {
       await axios.put(`${import.meta.env.VITE_API_URL}/api/items/purchase/${itemId}`);
-      alert("Item purchased successfully!");
-      
+      setMessage("Item purchased successfully!");
       setItems(items.filter((item) => item._id !== itemId));
     } catch (error) {
       console.error("Error purchasing item:", error);
-      alert("Failed to purchase item. Please try again.");
+      setMessage("Failed to purchase item. Please try again.");
     }
   };
 
@@ -40,6 +41,9 @@ const Home = () => {
       <h1 className="mb-8 text-4xl font-extrabold text-center text-gray-800 dark:text-white">
         Available Items
       </h1>
+      {message && (
+        <p className="mb-4 text-center text-red-500">{message}</p>
+      )}
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {items.map((item) => (
           <div

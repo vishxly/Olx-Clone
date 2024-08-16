@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
-  baseURL: 'https://olxclone-backend.vercel.app',
+  baseURL: "https://olxclone-backend.vercel.app/api",
 });
 
 export default instance;

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import  { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { FaSun, FaMoon } from "react-icons/fa";
@@ -8,17 +8,20 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <div className="text-black transition-colors duration-300 dark:bg-black dark:text-white ">
+    <div className="text-black transition-colors duration-300 dark:bg-black dark:text-white">
       <div className="w-full px-4 mx-auto sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold ">
+            <Link to="/" className="text-xl font-bold">
               OLX Clone
             </Link>
           </div>
           <div className="flex items-center">
             {user ? (
               <>
+                <span className="px-3 py-2 text-sm font-medium">
+                  {user.email}
+                </span>
                 <Link
                   to="/list-item"
                   className="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-700 hover:text-white"

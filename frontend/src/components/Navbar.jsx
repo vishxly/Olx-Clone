@@ -19,9 +19,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           <div className="flex items-center">
             {user ? (
               <>
-                <span className="px-3 py-2 text-sm font-medium">
-                  {user.email}
-                </span>
                 <Link
                   to="/list-item"
                   className="px-3 py-2 text-sm font-medium rounded-md hover:bg-gray-700 hover:text-white"
@@ -46,6 +43,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 >
                   Logout
                 </button>
+                <span className="px-3 py-2 text-sm font-medium">
+                  {user.email}
+                </span>
               </>
             ) : (
               <>

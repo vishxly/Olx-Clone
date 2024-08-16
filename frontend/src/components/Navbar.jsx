@@ -43,7 +43,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
                 >
                   Logout
                 </button>
-                <span className="px-3 py-2 text-sm font-medium">
+                <span className="px-3 py-2 text-sm font-medium text-red-500">
                   {user.email}
                 </span>
               </>

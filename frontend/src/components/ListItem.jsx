@@ -6,29 +6,31 @@ import { AuthContext } from "../context/AuthContext";
 const ListItem = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      alert("You must be logged in to list an item.");
+      setMessage("You must be logged in to list an item.");
       return;
     }
 
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/items`, { name, price: parseFloat(price) });
-      alert("Item listed successfully!");
-      navigate("/my-items");
+      setMessage("Item listed successfully!");
+      setTimeout(() => navigate("/my-items"), 2000);
     } catch (error) {
       console.error("Error listing item:", error);
-      alert("Failed to list item. Please try again.");
+      setMessage("Failed to list item. Please try again.");
     }
   };
 
   return (
     <div className="max-w-md mx-auto">
       <h1 className="mb-6 text-3xl font-bold">List an Item</h1>
+      {message && <p className="mb-4 text-center text-red-500">{message}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label htmlFor="name" className="block mb-1">

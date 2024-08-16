@@ -9,7 +9,7 @@ const MyItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("https://olxclone-backend.vercel.app/api/items/my-items");
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/items/my-items`);
         setItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);

@@ -9,7 +9,9 @@ const MyPurchases = () => {
   useEffect(() => {
     const fetchPurchases = async () => {
       try {
-        const res = await axios.get("https://olxclone-backend.vercel.app/api/items/my-purchases");
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/items/my-purchases`
+        );
         setPurchases(res.data);
       } catch (error) {
         console.error("Error fetching purchases:", error);
@@ -22,9 +24,7 @@ const MyPurchases = () => {
 
   return (
     <div className="container px-4 py-8 mx-auto">
-      <h1 className="mb-8 text-4xl font-extrabold text-center">
-        My Purchases
-      </h1>
+      <h1 className="mb-8 text-4xl font-extrabold text-center">My Purchases</h1>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {purchases.map((item) => (
           <div

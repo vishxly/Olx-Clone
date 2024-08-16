@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const res = await axios.get(
-        "https://olxclone-backend.vercel.app/api/users/profile"
+        `${import.meta.env.VITE_API_URL}/api/users/profile`
       );
       setUser(res.data);
     } catch (error) {
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const res = await axios.post(
-        "https://olxclone-backend.vercel.app/api/users/login",
+        `${import.meta.env.VITE_API_URL}/api/users/login`,
         { email, password }
       );
       localStorage.setItem("token", res.data.token);
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, email, password) => {
     try {
       const res = await axios.post(
-        "https://olxclone-backend.vercel.app/api/users/register",
+        `${import.meta.env.VITE_API_URL}/api/users/register`,
         {
           username,
           email,

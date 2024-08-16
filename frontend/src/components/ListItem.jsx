@@ -17,7 +17,7 @@ const ListItem = () => {
     }
 
     try {
-      await axios.post("https://olxclone-backend.vercel.app/api/items", { name, price: parseFloat(price) });
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/items`, { name, price: parseFloat(price) });
       alert("Item listed successfully!");
       navigate("/my-items");
     } catch (error) {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "../api/axios";
+import axios from "axios"; // Import axios directly
 import { AuthContext } from "../context/AuthContext";
 
 const MyPurchases = () => {
@@ -9,7 +9,7 @@ const MyPurchases = () => {
   useEffect(() => {
     const fetchPurchases = async () => {
       try {
-        const res = await axios.get("/api/items/my-purchases");
+        const res = await axios.get("https://olxclone-backend.vercel.app/api/items/my-purchases");
         setPurchases(res.data);
       } catch (error) {
         console.error("Error fetching purchases:", error);
@@ -22,7 +22,7 @@ const MyPurchases = () => {
 
   return (
     <div className="container px-4 py-8 mx-auto">
-      <h1 className="mb-8 text-4xl font-extrabold text-center ">
+      <h1 className="mb-8 text-4xl font-extrabold text-center">
         My Purchases
       </h1>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

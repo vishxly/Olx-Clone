@@ -1,5 +1,5 @@
-import  { useState, useEffect, useContext } from "react";
-import axios from "../api/axios";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios"; // Import axios directly
 import { AuthContext } from "../context/AuthContext";
 
 const MyItems = () => {
@@ -9,7 +9,7 @@ const MyItems = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("/api/items/my-items");
+        const res = await axios.get("https://olxclone-backend.vercel.app/api/items/my-items");
         setItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -22,9 +22,7 @@ const MyItems = () => {
 
   return (
     <div className="container px-4 py-8 mx-auto">
-      <h1 className="mb-8 text-4xl font-extrabold text-center ">
-        My Items
-      </h1>
+      <h1 className="mb-8 text-4xl font-extrabold text-center">My Items</h1>
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {items.map((item) => (
           <div

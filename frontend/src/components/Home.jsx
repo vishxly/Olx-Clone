@@ -1,5 +1,5 @@
-import  { useState, useEffect, useContext } from "react";
-import axios from "../api/axios";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios"; // Import axios directly
 import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("/api/items/unsold");
+        const res = await axios.get("https://olxclone-backend.vercel.app/api/items/unsold");
         setItems(res.data);
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -25,7 +25,7 @@ const Home = () => {
     }
 
     try {
-      await axios.put(`/api/items/purchase/${itemId}`);
+      await axios.put(`https://olxclone-backend.vercel.app/api/items/purchase/${itemId}`);
       alert("Item purchased successfully!");
       
       setItems(items.filter((item) => item._id !== itemId));

@@ -19,7 +19,9 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const res = await axios.get("https://olxclone-backend.vercel.app/api/users/profile");
+      const res = await axios.get(
+        "https://olxclone-backend.vercel.app/api/users/profile"
+      );
       setUser(res.data);
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -30,24 +32,37 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("https://olxclone-backend.vercel.app/api/users/login", { email, password });
+      const res = await axios.post(
+        "https://olxclone-backend.vercel.app/api/users/login",
+        { email, password }
+      );
       localStorage.setItem("token", res.data.token);
       axios.defaults.headers.common["x-auth-token"] = res.data.token;
       await fetchUser();
       return true;
     } catch (error) {
-      console.error("Login error:", error);
+      if (error.code === "ERR_NETWORK") {
+        alert(
+          "Network error. Please check your internet connection and try again."
+        );
+      } else {
+        console.error("Login error:", error);
+        alert("An error occurred during login. Please try again.");
+      }
       return false;
     }
   };
 
   const register = async (username, email, password) => {
     try {
-      const res = await axios.post("https://olxclone-backend.vercel.app/api/users/register", {
-        username,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://olxclone-backend.vercel.app/api/users/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
       localStorage.setItem("token", res.data.token);
       axios.defaults.headers.common["x-auth-token"] = res.data.token;
       await fetchUser();
